@@ -244,7 +244,7 @@ collision_mask = 8
 
 [node name="camera" type="Camera2D" parent="."]
 current = true
-limit_left = -32
+limit_left = -16
 limit_bottom = 260
 limit_smoothed = true
 drag_margin_left = 0.4
