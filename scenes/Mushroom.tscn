@@ -6,8 +6,8 @@
 [ext_resource path="res://scripts/Mushroom.gd" type="Script" id=4]
 [ext_resource path="res://prefabs/Hitbox.tscn" type="PackedScene" id=5]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 12, 5.5 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 6.26757, 13.5604 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -179,8 +179,10 @@ texture = ExtResource( 1 )
 hframes = 16
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 7.5 )
-shape = SubResource( 3 )
+position = Vector2( 0.497359, 10.0013 )
+rotation = 1.57343
+scale = Vector2( 0.788909, 0.921796 )
+shape = SubResource( 6 )
 
 [node name="animation" type="AnimationPlayer" parent="."]
 autoplay = "run"
@@ -196,7 +198,6 @@ cast_to = Vector2( -16, 0 )
 collision_mask = 8
 
 [node name="Hitbox" parent="." instance=ExtResource( 5 )]
-position = Vector2( 0, 1 )
 collision_layer = 64
 
 [connection signal="animation_finished" from="animation" to="." method="_on_animation_animation_finished"]

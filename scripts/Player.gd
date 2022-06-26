@@ -22,6 +22,13 @@ func _physics_process(delta: float) -> void:
   velocity = move_and_slide(velocity)
   is_grounded = _check_is_grounded()
   _set_animation()
+  
+  for platforms in get_slide_count():
+    var collision = get_slide_collision(platforms)
+    
+    if collision.collider.has_method('collide_with'):
+      collision.collider.collide_with(collision, self)
+  
 
 func _get_input() -> void:
   velocity.x = 0
@@ -65,7 +72,7 @@ func knockback() -> void:
   velocity.x = -knockback_direction * knockback_intensity
   velocity = move_and_slide(velocity)
 
-func _on_hurtbox_body_entered(body: Node) -> void:
+func _on_hurtbox_body_entered(_body: Node) -> void:
   hurted = true
   health -= 1
   knockback()
