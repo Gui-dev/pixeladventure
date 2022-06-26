@@ -6,6 +6,10 @@ var move_speed = 480
 var gravity = 1200
 var jump_force = -720
 var is_grounded
+var health = 3
+var hurted = false
+var knockback_direction = 1
+var knockback_intensity = 500
 onready var raycasts = $raycasts 
 
 func _ready() -> void:
@@ -26,6 +30,7 @@ func _get_input() -> void:
   
   if move_direction != 0:
     $texture.scale.x = move_direction
+    knockback_direction = move_direction
 
 func _input(event: InputEvent) -> void:
   if event.is_action_pressed('ui_jump') and is_grounded:
@@ -37,6 +42,7 @@ func _check_is_grounded() -> bool:
       return true
   return false
 
+
 func _set_animation() -> void:
   var animation = 'idle'
   
@@ -44,6 +50,30 @@ func _set_animation() -> void:
     animation = 'jump'
   elif velocity.x != 0:
     animation = 'run'
+    
+  if velocity.y > 0 and !is_grounded:
+    animation = 'fall'
+    
+  if hurted:
+    animation = 'hit'
   
   if $animation.assigned_animation != animation:
     $animation.play(animation)
+
+
+func knockback() -> void:
+  velocity.x = -knockback_direction * knockback_intensity
+  velocity = move_and_slide(velocity)
+
+func _on_hurtbox_body_entered(body: Node) -> void:
+  hurted = true
+  health -= 1
+  knockback()
+  get_node('hurtbox/collision').set_deferred('disabled', true)
+  yield(get_tree().create_timer(.5), 'timeout')
+  get_node('hurtbox/collision').set_deferred('disabled', false)
+  hurted = false
+  
+  if health < 1:
+    queue_free()
+    get_tree().reload_current_scene()
