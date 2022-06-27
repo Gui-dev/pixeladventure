@@ -10,6 +10,7 @@ var health = 3
 var hurted = false
 var knockback_direction = 1
 var knockback_intensity = 500
+var up = Vector2.UP
 onready var raycasts = $raycasts 
 
 func _ready() -> void:
@@ -17,9 +18,12 @@ func _ready() -> void:
   
 func _physics_process(delta: float) -> void:
   velocity.y += gravity * delta
+  velocity.x = 0
   
-  _get_input()    
-  velocity = move_and_slide(velocity)
+  if !hurted:
+    _get_input()
+      
+  velocity = move_and_slide(velocity, up)
   is_grounded = _check_is_grounded()
   _set_animation()
   
