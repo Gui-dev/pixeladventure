@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Pixeladventure"
+run/main_scene="res://levels/Level_01.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://scripts/Global.gd"
-Hud="*res://prefabs/HUD.tscn"
 
 [display]
 

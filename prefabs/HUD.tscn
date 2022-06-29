@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/Pacifico-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/hero/Items/Fruits/FruitsBag.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Score.gd" type="Script" id=3]
+[ext_resource path="res://assets/hero/Player/heart.png" type="Texture" id=4]
+[ext_resource path="res://assets/hero/Player/clock.png" type="Texture" id=5]
+[ext_resource path="res://scripts/TimeCounter.gd" type="Script" id=6]
+[ext_resource path="res://scripts/Heart.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -13,25 +17,91 @@ font_data = ExtResource( 1 )
 
 [node name="HUD" type="CanvasLayer"]
 
-[node name="holder" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -159.0
 
-[node name="icon" type="TextureRect" parent="holder"]
+[node name="heart" type="Control" parent="HBoxContainer"]
+margin_right = 104.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+script = ExtResource( 7 )
+
+[node name="lifes" type="TextureRect" parent="HBoxContainer/heart"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 38.0
+margin_bottom = 42.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+
+[node name="timer" type="Control" parent="HBoxContainer"]
+anchor_left = -0.0875
+anchor_right = -0.0875
+margin_left = 108.0
+margin_right = 212.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+script = ExtResource( 6 )
+minutes = 2
+
+[node name="icon" type="TextureRect" parent="HBoxContainer/timer"]
 margin_left = -1.0
 margin_top = -4.0
 margin_right = 39.0
 margin_bottom = 36.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="minutes" type="Label" parent="HBoxContainer/timer"]
+margin_left = 37.0
+margin_top = 1.0
+margin_right = 65.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 1 )
+text = "00"
+align = 2
+valign = 1
+
+[node name="seconds" type="Label" parent="HBoxContainer/timer"]
+margin_left = 70.0
+margin_top = 1.0
+margin_right = 97.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 1 )
+text = "00"
+align = 2
+valign = 1
+
+[node name="timer" type="Timer" parent="HBoxContainer/timer"]
+autostart = true
+
+[node name="holder3" type="Control" parent="HBoxContainer"]
+anchor_left = -0.03125
+anchor_right = -0.03125
+margin_left = 216.0
+margin_right = 320.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+
+[node name="icon" type="TextureRect" parent="HBoxContainer/holder3"]
+margin_left = 9.0
+margin_top = -4.0
+margin_right = 49.0
+margin_bottom = 36.0
 texture = ExtResource( 2 )
 expand = true
 
-[node name="score" type="Label" parent="holder"]
-margin_left = 49.0
-margin_top = 1.0
-margin_right = 112.0
-margin_bottom = 32.0
+[node name="score" type="Label" parent="HBoxContainer/holder3"]
+margin_left = 55.0
+margin_right = 95.0
+margin_bottom = 33.0
 custom_fonts/font = SubResource( 1 )
 text = "00"
 align = 2
 valign = 1
 script = ExtResource( 3 )
+
+[connection signal="timeout" from="HBoxContainer/timer/timer" to="HBoxContainer/timer" method="_on_timer_timeout"]
