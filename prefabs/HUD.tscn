@@ -9,7 +9,7 @@
 [ext_resource path="res://scripts/Heart.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 24
+size = 20
 outline_size = 2
 outline_color = Color( 0.286275, 0.286275, 0.286275, 1 )
 extra_spacing_top = -10
@@ -38,13 +38,16 @@ expand = true
 stretch_mode = 2
 
 [node name="timer" type="Control" parent="HBoxContainer"]
-anchor_left = -0.0875
-anchor_right = -0.0875
+anchor_left = -0.06875
+anchor_right = -0.06875
 margin_left = 108.0
 margin_right = 212.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
 minutes = 2
 
 [node name="icon" type="TextureRect" parent="HBoxContainer/timer"]
@@ -79,8 +82,8 @@ valign = 1
 autostart = true
 
 [node name="holder3" type="Control" parent="HBoxContainer"]
-anchor_left = -0.03125
-anchor_right = -0.03125
+anchor_left = -0.025
+anchor_right = -0.025
 margin_left = 216.0
 margin_right = 320.0
 margin_bottom = 33.0
@@ -95,8 +98,8 @@ texture = ExtResource( 2 )
 expand = true
 
 [node name="score" type="Label" parent="HBoxContainer/holder3"]
-margin_left = 55.0
-margin_right = 95.0
+margin_left = 52.0
+margin_right = 87.0
 margin_bottom = 33.0
 custom_fonts/font = SubResource( 1 )
 text = "00"

@@ -6,16 +6,23 @@ var move_speed = 480
 var gravity = 1200
 var jump_force = -720
 var is_grounded
-var health = 3
+var player_health = 3
+var max_health = 3
 var hurted = false
 var knockback_direction = 1
 var knockback_intensity = 500
 var up = Vector2.UP
 onready var raycasts = $raycasts 
 
+signal change_life(player_health)
+
+
 func _ready() -> void:
-  pass
-  
+  connect('change_life', get_parent().get_node('HUD/HBoxContainer/heart'), 'on_change_life')
+  emit_signal('change_life', max_health)
+  position.x = Global.checkpoint_position + 50
+ 
+ 
 func _physics_process(delta: float) -> void:
   velocity.y += gravity * delta
   velocity.x = 0
@@ -76,15 +83,20 @@ func knockback() -> void:
   velocity.x = -knockback_direction * knockback_intensity
   velocity = move_and_slide(velocity)
 
+
+func hit_checkpoint():
+  Global.checkpoint_position = position.x
+
 func _on_hurtbox_body_entered(_body: Node) -> void:
   hurted = true
-  health -= 1
+  player_health -= 1
+  emit_signal('change_life', player_health)
   knockback()
   get_node('hurtbox/collision').set_deferred('disabled', true)
   yield(get_tree().create_timer(.5), 'timeout')
   get_node('hurtbox/collision').set_deferred('disabled', false)
   hurted = false
   
-  if health < 1:
+  if player_health < 1:
     queue_free()
     get_tree().reload_current_scene()
