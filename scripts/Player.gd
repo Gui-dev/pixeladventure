@@ -48,7 +48,7 @@ func _get_input() -> void:
   
   if move_direction != 0:
     $texture.scale.x = move_direction
-    knockback_direction = move_direction
+    $steps_fx.scale.x = move_direction
 
 func _input(event: InputEvent) -> void:
   if event.is_action_pressed('ui_jump') and is_grounded:
@@ -68,6 +68,7 @@ func _set_animation() -> void:
     animation = 'jump'
   elif velocity.x != 0:
     animation = 'run'
+    $steps_fx.emitting = true
     
   if velocity.y > 0 and !is_grounded:
     animation = 'fall'
@@ -80,7 +81,14 @@ func _set_animation() -> void:
 
 
 func knockback() -> void:
-  velocity.x = -knockback_direction * knockback_intensity
+  if $right.is_colliding():
+    print('direita')
+    velocity.x = -knockback_direction * knockback_intensity
+    
+  if $left.is_colliding():
+    print('esquerda')
+    velocity.x = knockback_direction * knockback_intensity
+    
   velocity = move_and_slide(velocity)
 
 
