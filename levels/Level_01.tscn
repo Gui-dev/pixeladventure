@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=2]
+[gd_scene load_steps=161 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/hero/Terrain/Grassland/Foreground_scenery.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://prefabs/HUD.tscn" type="PackedScene" id=15]
 [ext_resource path="res://prefabs/CheckPoint.tscn" type="PackedScene" id=16]
 [ext_resource path="res://prefabs/Goal.tscn" type="PackedScene" id=17]
+[ext_resource path="res://prefabs/Transition_in.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -3509,6 +3510,7 @@ scale = Vector2( 2, 2 )
 
 [node name="Goal" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1773, 123 )
+path = "res://levels/Level_02.tscn"
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 121, 145 )
@@ -3581,5 +3583,7 @@ position = Vector2( 151.5, -5 )
 shape = SubResource( 146 )
 
 [node name="HUD" parent="." instance=ExtResource( 15 )]
+
+[node name="Transition_in" parent="." instance=ExtResource( 18 )]
 
 [connection signal="body_entered" from="fallzone" to="fallzone" method="_on_fallzone_body_entered"]
