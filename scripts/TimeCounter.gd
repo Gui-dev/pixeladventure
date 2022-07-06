@@ -22,6 +22,7 @@ func _process(_delta: float) -> void:
   if seconds <= 0:
     $timer.stop()
     yield(get_tree().create_timer(1), 'timeout')
+# warning-ignore:return_value_discarded
     get_tree().reload_current_scene()
 
 func _on_timer_timeout() -> void:

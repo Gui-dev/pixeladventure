@@ -10,7 +10,7 @@ var player_health = 3
 var max_health = 3
 var hurted = false
 var knockback_direction = 1
-var knockback_intensity = 500
+var knockback_intensity = 1500
 var up = Vector2.UP
 onready var raycasts = $raycasts 
 
@@ -82,11 +82,9 @@ func _set_animation() -> void:
 
 func knockback() -> void:
   if $right.is_colliding():
-    print('direita')
-    velocity.x = -knockback_direction * knockback_intensity
+    velocity.x = -(knockback_direction * knockback_intensity)
     
   if $left.is_colliding():
-    print('esquerda')
     velocity.x = knockback_direction * knockback_intensity
     
   velocity = move_and_slide(velocity)
@@ -108,3 +106,8 @@ func _on_hurtbox_body_entered(_body: Node) -> void:
   if player_health < 1:
     queue_free()
     get_tree().reload_current_scene()
+
+
+func _on_head_collider_body_entered(body: Node) -> void:
+  if body.has_method('destroy'):
+    body.destroy()

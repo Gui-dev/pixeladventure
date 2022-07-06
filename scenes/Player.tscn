@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/hero/Main Characters/Ninja Frog/Idle (32x32).png" type="Texture" id=2]
@@ -35,7 +35,7 @@ scale_curve = SubResource( 12 )
 color_ramp = SubResource( 10 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 10, 12 )
+extents = Vector2( 10, 9 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -279,6 +279,9 @@ tracks/2/keys = {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 12, 9 )
 
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 10, 1.5 )
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, -16 )
 collision_mask = 94
@@ -307,7 +310,7 @@ texture = ExtResource( 2 )
 hframes = 11
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 4 )
+position = Vector2( 0, 7 )
 shape = SubResource( 3 )
 
 [node name="animation" type="AnimationPlayer" parent="."]
@@ -320,6 +323,7 @@ anims/jump = SubResource( 4 )
 anims/run = SubResource( 5 )
 
 [node name="raycasts" type="Node2D" parent="."]
+visible = false
 
 [node name="raycast" type="RayCast2D" parent="raycasts"]
 position = Vector2( -8, 10 )
@@ -346,6 +350,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 32
 collision_mask = 2
 
@@ -354,15 +359,25 @@ position = Vector2( 0, -1 )
 shape = SubResource( 8 )
 
 [node name="left" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, 7 )
 enabled = true
 cast_to = Vector2( -16, 0 )
 collision_mask = 2
 
 [node name="right" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, 7 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2
 
+[node name="head_collider" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="collision" type="CollisionShape2D" parent="head_collider"]
+position = Vector2( 0, -6.5 )
+shape = SubResource( 14 )
+
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="head_collider" to="." method="_on_head_collider_body_entered"]
