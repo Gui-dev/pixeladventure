@@ -1,4 +1,4 @@
-[gd_scene load_steps=165 format=2]
+[gd_scene load_steps=166 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/hero/Terrain/Grassland/Foreground_scenery.png" type="Texture" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://items/SpoonBanana.tscn" type="PackedScene" id=20]
 [ext_resource path="res://items/SpoonApple.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/Birdie.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/Plantie.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -3479,10 +3480,10 @@ position = Vector2( 1199, 158 )
 position = Vector2( 491, 170 )
 
 [node name="Apple2" parent="items" instance=ExtResource( 9 )]
-position = Vector2( 288, 106 )
+position = Vector2( 384, 149 )
 
 [node name="Apple3" parent="items" instance=ExtResource( 9 )]
-position = Vector2( 862, 88 )
+position = Vector2( 876, 88 )
 
 [node name="Apple4" parent="items" instance=ExtResource( 9 )]
 position = Vector2( 896, 87 )
@@ -3524,6 +3525,9 @@ position = Vector2( 604, 174 )
 
 [node name="Birdie" parent="." instance=ExtResource( 22 )]
 position = Vector2( 241, 127 )
+
+[node name="Plantie" parent="." instance=ExtResource( 23 )]
+position = Vector2( 292, 106 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
