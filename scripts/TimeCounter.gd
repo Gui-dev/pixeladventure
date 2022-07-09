@@ -7,7 +7,7 @@ export(int) var seconds = 0
 func _process(_delta: float) -> void:
   if minutes > 0 and seconds <= 0:
     minutes -= 1
-    seconds = 60
+    seconds = 59
     
   if seconds >= 10:
     $seconds.set_text(': ' + str(seconds))
