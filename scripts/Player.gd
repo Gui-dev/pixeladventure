@@ -112,3 +112,19 @@ func _on_hurtbox_body_entered(_body: Node) -> void:
 func _on_head_collider_body_entered(body: Node) -> void:
   if body.has_method('destroy'):
     body.destroy()
+
+
+func _on_hurtbox_area_entered(_area: Area2D) -> void:
+  print('Colidiu')
+  hurted = true
+  player_health -= 1
+  emit_signal('change_life', player_health)
+  knockback()
+  get_node('hurtbox/collision').set_deferred('disabled', true)
+  yield(get_tree().create_timer(.5), 'timeout')
+  get_node('hurtbox/collision').set_deferred('disabled', false)
+  hurted = false
+  
+  if player_health < 1:
+    queue_free()
+    get_tree().reload_current_scene()

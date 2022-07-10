@@ -379,5 +379,6 @@ collision_mask = 16
 position = Vector2( 0, -6.5 )
 shape = SubResource( 14 )
 
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="head_collider" to="." method="_on_head_collider_body_entered"]
