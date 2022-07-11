@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=2]
+[gd_scene load_steps=167 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/hero/Terrain/Grassland/Foreground_scenery.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://items/SpoonApple.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/Birdie.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/Plantie.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/music/Retro Beat.ogg" type="AudioStream" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -3601,5 +3602,10 @@ shape = SubResource( 146 )
 position = Vector2( 159, 138 )
 fruit_instance = [ ExtResource( 21 ), ExtResource( 20 ) ]
 fruits = 10
+
+[node name="background_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 24 )
+volume_db = -25.0
+autoplay = true
 
 [connection signal="body_entered" from="fallzone" to="fallzone" method="_on_fallzone_body_entered"]

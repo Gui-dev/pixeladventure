@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/hero/Main Characters/Ninja Frog/Idle (32x32).png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/hero/Main Characters/Ninja Frog/Fall (32x32).png" type="Texture" id=6]
 [ext_resource path="res://assets/hero/Other/Shadow.png" type="Texture" id=7]
 [ext_resource path="res://assets/hero/Other/Dust Particle.png" type="Texture" id=8]
+[ext_resource path="res://assets/sounds/jump1.ogg" type="AudioStream" id=9]
 
 [sub_resource type="Gradient" id=9]
 offsets = PoolRealArray( 0, 0.466165, 0.992481 )
@@ -378,6 +379,10 @@ collision_mask = 16
 [node name="collision" type="CollisionShape2D" parent="head_collider"]
 position = Vector2( 0, -6.5 )
 shape = SubResource( 14 )
+
+[node name="jump_fx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = -25.0
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

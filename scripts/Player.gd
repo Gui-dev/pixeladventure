@@ -54,6 +54,7 @@ func _get_input() -> void:
 func _input(event: InputEvent) -> void:
   if event.is_action_pressed('ui_jump') and is_grounded:
     velocity.y = jump_force / 2
+    $jump_fx.play()
 
 func _check_is_grounded() -> bool:
   for raycast in raycasts.get_children():
@@ -115,7 +116,6 @@ func _on_head_collider_body_entered(body: Node) -> void:
 
 
 func _on_hurtbox_area_entered(_area: Area2D) -> void:
-  print('Colidiu')
   hurted = true
   player_health -= 1
   emit_signal('change_life', player_health)

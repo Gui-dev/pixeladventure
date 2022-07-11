@@ -13,3 +13,4 @@ func _on_Goal_body_entered(body: Node) -> void:
     $confetti.emitting = true
     changer.change_scene(path)
     Global.checkpoint_position = 0
+    $victory_fx.play()
