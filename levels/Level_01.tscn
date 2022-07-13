@@ -3528,7 +3528,7 @@ position = Vector2( 604, 174 )
 position = Vector2( 241, 127 )
 
 [node name="Plantie" parent="." instance=ExtResource( 23 )]
-position = Vector2( 292, 106 )
+position = Vector2( 848, 90 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
