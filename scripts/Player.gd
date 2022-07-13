@@ -13,6 +13,7 @@ var knockback_direction = 1
 var knockback_intensity = 1500
 var up = Vector2.UP
 onready var raycasts = $raycasts 
+var is_pushing  = false
 
 signal change_life(player_health)
 
@@ -31,6 +32,17 @@ func _physics_process(delta: float) -> void:
   if !hurted:
     _get_input()
       
+  if $push_right.is_colliding():
+    var object = $push_right.get_collider()
+    object.move_and_slide(Vector2(30, 0) * move_speed * delta)
+    is_pushing = true
+  elif $push_left.is_colliding():
+    var object = $push_left.get_collider()
+    object.move_and_slide(Vector2(-30, 0) * move_speed * delta)
+    is_pushing = true
+  else:
+    is_pushing = false 
+  
   velocity = move_and_slide(velocity, up)
   is_grounded = _check_is_grounded()
   _set_animation()
@@ -50,6 +62,17 @@ func _get_input() -> void:
   if move_direction != 0:
     $texture.scale.x = move_direction
     $steps_fx.scale.x = move_direction
+    
+  if velocity.x > 1:
+    $push_right.set_enabled(true)
+  else:
+    $push_right.set_enabled(false)
+    
+  if velocity.x < -1:
+    $push_left.set_enabled(true)
+  else:
+    $push_left.set_enabled(false)
+    
 
 func _input(event: InputEvent) -> void:
   if event.is_action_pressed('ui_jump') and is_grounded:
@@ -68,7 +91,7 @@ func _set_animation() -> void:
   
   if !is_grounded:
     animation = 'jump'
-  elif velocity.x != 0:
+  elif velocity.x != 0 or is_pushing:
     animation = 'run'
     $steps_fx.emitting = true
     
