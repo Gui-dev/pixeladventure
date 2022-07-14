@@ -1,4 +1,9 @@
 extends Area2D
 
-func _on_fallzone_body_entered(_body: Node) -> void:
-  get_tree().reload_current_scene()
+
+var game_over_scene = 'res://prefabs/GameOver.tscn'
+
+
+func _on_fallzone_body_entered(body: Node) -> void:
+  if body.name == 'Player':
+    get_tree().change_scene(game_over_scene)

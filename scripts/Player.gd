@@ -15,6 +15,8 @@ var up = Vector2.UP
 onready var raycasts = $raycasts 
 var is_pushing  = false
 
+var game_over_scene = 'res://prefabs/GameOver.tscn'
+
 signal change_life(player_health)
 
 
@@ -118,6 +120,13 @@ func knockback() -> void:
 func hit_checkpoint():
   Global.checkpoint_position = position.x
 
+
+func game_over() -> void:
+  if player_health < 1:
+    queue_free()
+    get_tree().change_scene(game_over_scene)
+
+
 func _on_hurtbox_body_entered(_body: Node) -> void:
   hurted = true
   player_health -= 1
@@ -128,9 +137,7 @@ func _on_hurtbox_body_entered(_body: Node) -> void:
   get_node('hurtbox/collision').set_deferred('disabled', false)
   hurted = false
   
-  if player_health < 1:
-    queue_free()
-    get_tree().reload_current_scene()
+  game_over()
 
 
 func _on_head_collider_body_entered(body: Node) -> void:
@@ -148,6 +155,5 @@ func _on_hurtbox_area_entered(_area: Area2D) -> void:
   get_node('hurtbox/collision').set_deferred('disabled', false)
   hurted = false
   
-  if player_health < 1:
-    queue_free()
-    get_tree().reload_current_scene()
+  game_over()
+  
