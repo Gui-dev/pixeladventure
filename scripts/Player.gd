@@ -46,6 +46,12 @@ func _physics_process(delta: float) -> void:
   
   velocity = move_and_slide(velocity, up)
   is_grounded = _check_is_grounded()
+  
+  if is_grounded:
+    $shadow.visible = true
+  else:
+    $shadow.visible = false
+  
   _set_animation()
   
   for platforms in get_slide_count():

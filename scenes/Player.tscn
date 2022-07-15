@@ -18,7 +18,7 @@ colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
 gradient = SubResource( 9 )
 
 [sub_resource type="Curve" id=11]
-_data = [ Vector2( 0.005, 0.457055 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.005, 0.708589 ), 0.0, 0.0, 0, 0, Vector2( 0.985, 0.54908 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=12]
 curve = SubResource( 11 )
@@ -30,8 +30,7 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 50.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 1.5
-scale_random = 0.8
+scale_random = 0.5
 scale_curve = SubResource( 12 )
 color_ramp = SubResource( 10 )
 
@@ -289,21 +288,25 @@ collision_mask = 94
 script = ExtResource( 1 )
 
 [node name="steps_fx" type="Particles2D" parent="."]
-visible = false
 position = Vector2( -6, 14 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 emitting = false
 amount = 10
-lifetime = 0.5
+lifetime = 0.07
 one_shot = true
-randomness = 0.5
+speed_scale = 0.3
+explosiveness = 0.3
+randomness = 0.8
+visibility_rect = Rect2( -10, -10, 200, 200 )
+local_coords = false
 process_material = SubResource( 13 )
 texture = ExtResource( 8 )
 
 [node name="shadow" type="Sprite" parent="."]
-position = Vector2( 0, 16 )
-scale = Vector2( 1, 0.125 )
+visible = false
+position = Vector2( 0, 17 )
+scale = Vector2( 1, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="texture" type="Sprite" parent="."]
