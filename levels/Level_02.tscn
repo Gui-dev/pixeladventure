@@ -1,4 +1,4 @@
-[gd_scene load_steps=164 format=2]
+[gd_scene load_steps=165 format=2]
 
 [ext_resource path="res://scripts/fallzone.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/MovingPlatform.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://prefabs/Transition_in.tscn" type="PackedScene" id=19]
 [ext_resource path="res://prefabs/MoveBox.tscn" type="PackedScene" id=20]
 [ext_resource path="res://prefabs/Trampoline.tscn" type="PackedScene" id=21]
+[ext_resource path="res://prefabs/ChainSaw.tscn" type="PackedScene" id=22]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -3516,6 +3517,9 @@ position = Vector2( 1773, 123 )
 
 [node name="Trampoline" parent="." instance=ExtResource( 21 )]
 position = Vector2( 230, 160 )
+
+[node name="ChainSaw" parent="." instance=ExtResource( 22 )]
+position = Vector2( 1583, 89 )
 
 [node name="Mushroom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 604, 174 )
