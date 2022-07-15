@@ -129,6 +129,7 @@ func hit_checkpoint():
 func game_over() -> void:
   if Global.player_health < 1:
     queue_free()
+    Global.is_dead = true
     get_tree().change_scene(game_over_scene)
 
 
