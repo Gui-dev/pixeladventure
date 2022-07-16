@@ -86,6 +86,7 @@ func _input(event: InputEvent) -> void:
     velocity.y = jump_force / 2
     $jump_fx.play()
 
+
 func _check_is_grounded() -> bool:
   for raycast in raycasts.get_children():
     if raycast.is_colliding():
@@ -130,10 +131,11 @@ func game_over() -> void:
   if Global.player_health < 1:
     queue_free()
     Global.is_dead = true
-    get_tree().change_scene(game_over_scene)
+    if get_tree().change_scene(game_over_scene) != OK:
+      print('Algo deu errado')
 
 
-func _on_hurtbox_body_entered(_body: Node) -> void:
+func player_damage() -> void:
   hurted = true
   Global.player_health -= 1
   emit_signal('change_life', Global.player_health)
@@ -144,6 +146,10 @@ func _on_hurtbox_body_entered(_body: Node) -> void:
   hurted = false
   
   game_over()
+
+
+func _on_hurtbox_body_entered(_body: Node) -> void:
+  player_damage()
 
 
 func _on_head_collider_body_entered(body: Node) -> void:
@@ -152,14 +158,5 @@ func _on_head_collider_body_entered(body: Node) -> void:
 
 
 func _on_hurtbox_area_entered(_area: Area2D) -> void:
-  hurted = true
-  Global.player_health -= 1
-  emit_signal('change_life', Global.player_health)
-  knockback()
-  get_node('hurtbox/collision').set_deferred('disabled', true)
-  yield(get_tree().create_timer(.5), 'timeout')
-  get_node('hurtbox/collision').set_deferred('disabled', false)
-  hurted = false
-  
-  game_over()
+  player_damage()
   
