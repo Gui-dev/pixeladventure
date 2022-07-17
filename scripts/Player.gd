@@ -160,3 +160,6 @@ func _on_head_collider_body_entered(body: Node) -> void:
 func _on_hurtbox_area_entered(_area: Area2D) -> void:
   player_damage()
   
+
+func _on_Trigger_player_entered() -> void:
+  $camera.current = false
