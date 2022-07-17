@@ -1,0 +1,181 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/hero/Terrain/Terrain (16x16).png" type="Texture" id=1]
+[ext_resource path="res://scripts/ArenaDoor.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 99.75 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("collision:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 92 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("texture:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "active"
+tracks/0/type = "value"
+tracks/0/path = NodePath("collision:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 294 ), Vector2( 0, 98 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("texture:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 202 ), Vector2( 0, 3 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "disabled"
+tracks/0/type = "value"
+tracks/0/path = NodePath("collision:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 294 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("texture:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 202 ) ]
+}
+
+[node name="ArenaDoor" type="StaticBody2D"]
+collision_layer = 8
+script = ExtResource( 2 )
+
+[node name="texture" type="Node2D" parent="."]
+
+[node name="top" type="Sprite" parent="texture"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 128, 16, 16 )
+
+[node name="middle" type="Sprite" parent="texture"]
+position = Vector2( 0, 169 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle2" type="Sprite" parent="texture"]
+position = Vector2( 0, 154 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle3" type="Sprite" parent="texture"]
+position = Vector2( 0, 138 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle4" type="Sprite" parent="texture"]
+position = Vector2( 0, 122 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle5" type="Sprite" parent="texture"]
+position = Vector2( 0, 106 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle6" type="Sprite" parent="texture"]
+position = Vector2( 0, 90 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle7" type="Sprite" parent="texture"]
+position = Vector2( 0, 74 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle8" type="Sprite" parent="texture"]
+position = Vector2( 0, 58 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle9" type="Sprite" parent="texture"]
+position = Vector2( 0, 42 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle10" type="Sprite" parent="texture"]
+position = Vector2( 0, 26 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="middle11" type="Sprite" parent="texture"]
+position = Vector2( 0, 15 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 144, 16, 16 )
+
+[node name="bottom" type="Sprite" parent="texture"]
+position = Vector2( 0, 185 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 160, 16, 16 )
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 92 )
+shape = SubResource( 1 )
+
+[node name="animation" type="AnimationPlayer" parent="."]
+autoplay = "disabled"
+anims/RESET = SubResource( 3 )
+anims/active = SubResource( 4 )
+anims/disabled = SubResource( 2 )
