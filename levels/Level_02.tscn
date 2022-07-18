@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=2]
+[gd_scene load_steps=169 format=2]
 
 [ext_resource path="res://prefabs/Fallzone.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefabs/MovingPlatform.tscn" type="PackedScene" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://prefabs/Trigger.tscn" type="PackedScene" id=24]
 [ext_resource path="res://prefabs/ArenaDoor.tscn" type="PackedScene" id=25]
 [ext_resource path="res://prefabs/BossPlatform.tscn" type="PackedScene" id=26]
+[ext_resource path="res://scenes/Boss.tscn" type="PackedScene" id=27]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -3460,6 +3461,7 @@ position = Vector2( 2257, -17 )
 position = Vector2( 1978, -17 )
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2( 0, -2 )
 tile_set = SubResource( 5 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 8
@@ -3556,8 +3558,13 @@ position = Vector2( 1693, 259 )
 [node name="Mushroom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 604, 174 )
 
+[node name="Boss" parent="." instance=ExtResource( 27 )]
+position = Vector2( 2140, -38 )
+speed = 48
+health = 6
+
 [node name="Player" parent="." instance=ExtResource( 17 )]
-position = Vector2( 121, 145 )
+position = Vector2( 1899, 159 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -3625,4 +3632,5 @@ position = Vector2( 2136, -14 )
 
 [connection signal="player_entered" from="Trigger" to="ArenaDoor/ArenaDoor" method="_on_Trigger_player_entered"]
 [connection signal="player_entered" from="Trigger" to="ArenaDoor/ArenaDoor2" method="_on_Trigger_player_entered"]
+[connection signal="player_entered" from="Trigger" to="Boss" method="_on_Trigger_player_entered"]
 [connection signal="player_entered" from="Trigger" to="Player" method="_on_Trigger_player_entered"]
