@@ -55,5 +55,8 @@ func _on_Hitbox_body_entered(body: Node) -> void:
   hitted = false
   
   if health < 1:
-    queue_free()
     get_node('Hitbox/collision').set_deferred('disabled', true)
+    set_physics_process(false)
+    get_node('collision').set_deferred('disabled', true)    
+    yield(get_tree().create_timer(.7), 'timeout')
+    queue_free()
