@@ -3558,13 +3558,8 @@ position = Vector2( 1693, 259 )
 [node name="Mushroom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 604, 174 )
 
-[node name="Boss" parent="." instance=ExtResource( 27 )]
-position = Vector2( 2140, -38 )
-speed = 48
-health = 6
-
 [node name="Player" parent="." instance=ExtResource( 17 )]
-position = Vector2( 1899, 159 )
+position = Vector2( 62, 121 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -3630,7 +3625,12 @@ position = Vector2( 161, 167 )
 [node name="Trigger" parent="." instance=ExtResource( 24 )]
 position = Vector2( 2136, -14 )
 
+[node name="Boss" parent="." instance=ExtResource( 27 )]
+position = Vector2( 2138, -41 )
+speed = 44
+health = 6
+
 [connection signal="player_entered" from="Trigger" to="ArenaDoor/ArenaDoor" method="_on_Trigger_player_entered"]
 [connection signal="player_entered" from="Trigger" to="ArenaDoor/ArenaDoor2" method="_on_Trigger_player_entered"]
-[connection signal="player_entered" from="Trigger" to="Boss" method="_on_Trigger_player_entered"]
 [connection signal="player_entered" from="Trigger" to="Player" method="_on_Trigger_player_entered"]
+[connection signal="player_entered" from="Trigger" to="Boss" method="_on_Trigger_player_entered"]
