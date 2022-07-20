@@ -163,3 +163,7 @@ func _on_hurtbox_area_entered(_area: Area2D) -> void:
 
 func _on_Trigger_player_entered() -> void:
   $camera.current = false
+
+
+func _on_Boss_boss_dead() -> void:
+  $camera.current = true
