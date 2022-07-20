@@ -3528,6 +3528,7 @@ scale = Vector2( 2, 2 )
 
 [node name="Goal" parent="." instance=ExtResource( 14 )]
 position = Vector2( 2593, 77 )
+path = "res://levels/Final.tscn"
 
 [node name="Trampoline" parent="." instance=ExtResource( 21 )]
 position = Vector2( 230, 160 )
@@ -3630,7 +3631,15 @@ position = Vector2( 2138, -41 )
 speed = 44
 health = 6
 
+[node name="boss_camera" type="Camera2D" parent="."]
+position = Vector2( 2120, 96 )
+
+[connection signal="player_entered" from="Trigger" to="." method="_on_Trigger_player_entered_camera"]
 [connection signal="player_entered" from="Trigger" to="ArenaDoor/ArenaDoor" method="_on_Trigger_player_entered"]
 [connection signal="player_entered" from="Trigger" to="ArenaDoor/ArenaDoor2" method="_on_Trigger_player_entered"]
 [connection signal="player_entered" from="Trigger" to="Player" method="_on_Trigger_player_entered"]
 [connection signal="player_entered" from="Trigger" to="Boss" method="_on_Trigger_player_entered"]
+[connection signal="boss_dead" from="Boss" to="." method="_on_Boss_boss_dead"]
+[connection signal="boss_dead" from="Boss" to="ArenaDoor/ArenaDoor" method="_on_Boss_boss_dead"]
+[connection signal="boss_dead" from="Boss" to="ArenaDoor/ArenaDoor2" method="_on_Boss_boss_dead"]
+[connection signal="boss_dead" from="Boss" to="Player" method="_on_Boss_boss_dead"]
