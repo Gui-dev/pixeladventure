@@ -16,7 +16,6 @@ func _physics_process(_delta: float) -> void:
   else:
      $texture.flip_h = false
     
-  _set_animation()    
   motion = move_and_slide(motion)
 
 
