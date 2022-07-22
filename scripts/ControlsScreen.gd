@@ -7,3 +7,4 @@ func _ready() -> void:
 
 func _on_return_button_pressed() -> void:
   queue_free()
+  Global.controll_off = false

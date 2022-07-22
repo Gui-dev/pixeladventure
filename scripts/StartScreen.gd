@@ -3,6 +3,12 @@ extends Control
 
 func _ready() -> void:
   $controls/start_button.grab_focus()
+  
+
+func _physics_process(delta: float) -> void:
+  if !Global.controll_off:
+    $controls/start_button.grab_focus()
+    Global.controll_off = true
 
 
 func _on_start_button_pressed() -> void:
