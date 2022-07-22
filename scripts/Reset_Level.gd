@@ -5,6 +5,8 @@ var checkpoint_position = 0
 
 func _ready() -> void:
   Global.fruits = 0
+  if Global.is_dead:
+    Global.player_health = 3
 
 
 func _on_Trigger_player_entered_camera() -> void:

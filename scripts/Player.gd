@@ -7,6 +7,7 @@ var gravity = 1200
 var jump_force = -720
 var is_grounded
 var max_health = 3
+var player_life = 3
 var hurted = false
 var knockback_direction = 1
 var knockback_intensity = 1500
@@ -131,6 +132,10 @@ func game_over() -> void:
   if Global.player_health < 1:
     queue_free()
     Global.is_dead = true
+    Global.player_life -= 1
+    Global.player_health = 3
+    get_tree().reload_current_scene()
+  if Global.player_life < 1:
     if get_tree().change_scene(game_over_scene) != OK:
       print('Algo deu errado')
 

@@ -6,7 +6,7 @@ func _ready() -> void:
 
 
 func _on_button_retry_pressed() -> void:
-  if get_tree().change_scene('res://levels/Level_02.tscn') != OK:
+  if get_tree().change_scene('res://scenes/StartScreen.tscn') != OK:
     print('Algo deu errado')
     
   if Global.is_dead:

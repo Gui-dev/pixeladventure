@@ -3,9 +3,12 @@ extends Control
 
 func _ready() -> void:
   $controls/start_button.grab_focus()
+  Global.player_health = 3
+  Global.player_life = 3
+  Global.checkpoint_position = null
   
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
   if !Global.controll_off:
     $controls/start_button.grab_focus()
     Global.controll_off = true
